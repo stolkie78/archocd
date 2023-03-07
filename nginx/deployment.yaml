@@ -24,3 +24,14 @@ spec:
       limits:
         memory: "128Mi"
         cpu: "500m"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8086
+  selector:
+    name: nginx
