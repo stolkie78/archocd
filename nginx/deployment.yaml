@@ -25,13 +25,14 @@ spec:
         memory: "128Mi"
         cpu: "500m"
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: nginx-service
 spec:
-  type: LoadBalancer
   ports:
-    - port: 8086
+  - port: 8000
+    targetPort: 80
+    protocol: TCP
   selector:
-    name: nginx
+    app: nginx
