@@ -28,7 +28,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: nginx
+  name: nginx-service
 spec:
   type: LoadBalancer
   ports:
