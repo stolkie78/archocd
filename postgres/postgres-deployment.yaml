@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:latest
+        env:
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: password
+        - name: POSTGRES_DB
+          value: mydb
+        ports:
+        - containerPort: 5432
+      - name: pgweb
+        image: sosedoff/pgweb
+        env:
+        - name: DATABASE_URL
+          value: postgres://postgres:password@postgres-service:5432/mydb
+        ports:
+        - containerPort: 8081
